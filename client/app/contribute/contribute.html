@@ -28,6 +28,13 @@
                                           {{ 'Map view' | translate }}
                                       </a>
                                   </li>
+                                  <li class="tab--item"
+                                          ng-click="contributeCtrl.resultsView = 'campaign'"
+                                          ng-class="contributeCtrl.resultsView === 'campaign' ? 'button--active' : ''">
+                                      <a href="#">
+                                          {{ 'Campaign view' | translate }}
+                                      </a>
+                                  </li>
                               </ul>
                           </div>
                           <div class="search-container">
