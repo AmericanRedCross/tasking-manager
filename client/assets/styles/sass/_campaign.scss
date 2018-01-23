@@ -1,0 +1,29 @@
+.learn-container {
+  @include column(12/12);
+
+  .information {
+    @include column(12/12);
+    @include media(medium-up) {
+      @include column(6/12);
+    }
+  }
+
+  .video {
+    @include column(12/12);
+    @include media(medium-up) {
+      @include column(6/12);
+    }
+  }
+
+  .campaign-hero {
+    background:url('http://www.tanzdevtrust.org/wp-content/uploads/2015/11/Social_worker_Sophia_working-1024x768.jpg') no-repeat center center fixed;background-size:cover;
+    filter: grayscale(75%);
+    -webkit-filter: grayscale(75%);
+    -moz-filter:    grayscale(75%);
+    -ms-filter:     grayscale(75%);
+    -o-filter:      grayscale(75%);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+  }
+}

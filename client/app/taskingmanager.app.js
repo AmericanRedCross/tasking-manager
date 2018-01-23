@@ -92,6 +92,10 @@
                     templateUrl: 'app/learn/learn.html'
                 })
 
+                .when('/campaigns', {
+                    templateUrl: 'app/campaigns/campaigns.html'
+                })
+
                 .when('/what-is-new', {
                     templateUrl: 'app/about/what-is-new.html'
                 })
