@@ -27,6 +27,14 @@ project_allowed_users = db.Table(
     db.Column('user_id', db.BigInteger, db.ForeignKey('users.id'))
 )
 
+# Secondary table defining many-to-many join for campaigns + projects
+campaigns_projects_table = db.Table(
+    'campaigns_projects',
+    db.metadata,
+    db.Column('campaign_id', db.Integer, db.ForeignKey('campaigns.id')),
+    db.Column('project_id', db.Integer, db.ForeignKey('projects.id')),
+)
+
 # cache mapper counts for 30 seconds
 active_mappers_cache = TTLCache(maxsize=1024, ttl=30)
 
@@ -75,6 +83,7 @@ class Project(db.Model):
     allowed_users = db.relationship(User, secondary=project_allowed_users)
     priority_areas = db.relationship(PriorityArea, secondary=project_priority_areas, cascade="all, delete-orphan",
                                      single_parent=True)
+    campaigns = db.relationship("Campaign", secondary=campaigns_projects_table)
 
     def create_draft_project(self, draft_project_dto: DraftProjectDTO):
         """

@@ -1,7 +1,7 @@
 from server import db
 from server.models.dtos.campaign_dto import CampaignDTO, CampaignListDTO
 
-from .project import Project
+from .project import campaigns_projects_table
 
 
 class Campaign(db.Model):
@@ -14,7 +14,7 @@ class Campaign(db.Model):
     name = db.Column(db.String)
     description = db.Column(db.String)
     promoted = db.Column(db.Boolean, default=False)
-    # projects = db.relationship(Project, lazy='dynamic', cascade='none')
+    projects = db.relationship("Project", secondary=campaigns_projects_table)
 
     @classmethod
     def create_from_dto(cls, dto: CampaignDTO) -> int:
