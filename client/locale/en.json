@@ -440,5 +440,10 @@
 	"You need to add at least one allowed user to a private project.": "You need to add at least one allowed user to a private project.",
 	"Your profile": "Your profile",
 	"Your project has been updated successfully.": "Your project has been updated successfully.",
-	"Your project was created successfully.": "Your project was created successfully."
+	"Your project was created successfully.": "Your project was created successfully.",
+	"Create campaign": "Create campaign",
+	"Step 1: Name": "Step 1: Name",
+	"Campaign has": "Campaign has",
+	"Your campaign was created successfully.": "Your campaign was created successfully.",
+	"Campaign could not be created. The exact reason could not be determined.": "Campaign could not be created. The exact reason could not be determined."
 }

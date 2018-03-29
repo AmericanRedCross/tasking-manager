@@ -1,0 +1,84 @@
+<div class="inner">
+    <section class="section section--asided">
+        <header class="section__header section__header--nodescription">
+            <div class="inner">
+                <h1 ng-hide="createCampaignCtrl.isCloneCampaign" class="section__title">
+                    {{ 'Create campaign' | translate }}
+                </h1>
+            </div>
+        </header>
+    </section>
+    <section class="create-campaign section__body section__body--secondary">
+        <div class="inner">
+            <ul class="progress-indicator">
+                <li ng-class="createCampaignCtrl.showWizardStep('name') ? 'completed' : ''">
+                    <span class="bubble"></span>{{ 'Step 1' | translate }}
+                </li>
+                <!-- <li ng-class="createCampaignCtrl.showWizardStep('tasks') ? 'completed' : ''">
+                    <span class="bubble"></span>{{ 'Step 2' | translate }}
+                </li> -->
+            </ul>
+            <div class="sidebar">
+                <div ng-show="createCampaignCtrl.currentStep === 'name'" class="content">
+                    <h4>{{ 'Step 1: Name' | translate }}</h4>
+                    <form class="form" name="createCampaignCtrl.campaignNameForm">
+                        <p>{{ 'Campaign has' | translate }} {{ createCampaignCtrl.numberOfTasks }} {{ 'tasks.' | translate }}</p>
+                        <div>
+                            <label class="form__label" for="campaignName">{{ 'Campaign name' | translate }}</label>
+                            <input type="text" class="form__control form__control--medium" id="campaignName"
+                                   name="campaignName"
+                                   ng-class="{ 'ng-touched': createCampaignCtrl.campaignNameForm.submitted }" required
+                                   ng-model="createCampaignCtrl.campaignName"
+                            />
+                        </div>
+                        <div role="alert">
+                            <p class="error"
+                                  ng-show="createCampaignCtrl.campaignNameForm.submitted && createCampaignCtrl.campaignNameForm.campaignName.$error.required">
+                                {{ 'Required' | translate }}
+                            </p>
+                            <div ng-show="createCampaignCtrl.createCampaignFailReason == 400"
+                                 class="error" role="alert">
+                                <p>
+                                    <strong>{{ 'Error' | translate }}:</strong> {{ 'AOI geometry must be a valid MultiPolygon.' | translate }}
+                                </p>
+                            </div>
+                            <div ng-show="createCampaignCtrl.createCampaignFailReason == 500"
+                                 class="error" role="alert">
+                                <p>
+                                    <strong>{{ 'Error' | translate }}:</strong> {{ 'Campaign could not be created. The exact reason could not be determined.' | translate }}
+                                </p>
+                            </div>
+                            <div ng-show="createCampaignCtrl.createCampaignFailReason == -1"
+                                 class="error" role="alert">
+                                <p>
+                                    <strong>{{ 'Error' | translate }}:</strong> {{ 'The Campaign could not be created. This may be because the combined data size of the AOI and the grid is too large to send to the server. Try again with a smaller AOI or fewer tasks.' | translate }}
+                                </p>
+                            </div>
+
+                            <span ng-show="createCampaignCtrl.createCampaignSuccess">
+                                {{ 'Your campaign was created successfully.' | translate }}
+                            </span>
+                        </div>
+                    </form>
+                    <div class="navigation-steps">
+                        <div class="button-group button-group--stacked" role="group">
+                            <button class="button button--primary" type="button"
+                                    ng-click="createCampaignCtrl.createCampaign()">
+                                <span ng-hide="createCampaignCtrl.isCloneCampaign">{{ 'Create' | translate }}</span>
+                                <span ng-show="createCampaignCtrl.isCloneCampaign">{{ 'Clone' | translate }}</span>
+                            </button>
+                            <button class="button button--secondary" type=""
+                                    ng-click="createCampaignCtrl.setWizardStep(createCampaignCtrl.isTaskArbitrary?'tasks':'trim')">
+                                <span>{{ 'Back to Previous' | translate }}</span>
+                            </button>
+                        </div>
+                        <div ng-show="createCampaignCtrl.waiting">
+                            <i class="fa fa-spinner fa-spin fa-lg fa-fw"></i><span>{{ 'Creation in progress...' | translate }}</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

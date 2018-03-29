@@ -76,10 +76,23 @@
                     reloadOnSearch: false
                 })
 
+                .when('/admin/create-campaign', {
+                    templateUrl: 'app/admin/create-campaign/create-campaign.html',
+                    controller: 'createCampaignController',
+                    controllerAs: 'createCampaignCtrl',
+                    reloadOnSearch: false
+                })
+
                 .when('/admin/edit-project/:id', {
                     templateUrl: 'app/admin/edit-project/edit-project.html',
                     controller: 'editProjectController',
                     controllerAs: 'editProjectCtrl'
+                })
+
+                .when('/admin/edit-campaign/:id', {
+                    templateUrl: 'app/admin/edit-campaign/edit-campaign.html',
+                    controller: 'editCampaignController',
+                    controllerAs: 'editCampaignCtrl'
                 })
 
                 .when('/about', {

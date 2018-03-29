@@ -1,0 +1,155 @@
+<div class="inner">
+    <section class="section section--asided">
+        <header class="section__header section__header--nodescription">
+            <div class="inner">
+                <h1 class="section__title">
+                    {{ 'Edit campaign' | translate }}: # {{ editProjectCtrl.project.projectId }}
+                </h1>
+            </div>
+        </header>
+        <div class="section-container edit-project">
+            <div class="section__body section__body--secondary">
+                <div class="inner">
+                    <aside class="section__aside-content">
+                        <h1 class="section__aside-title">{{ 'In this area' | translate }}</h1>
+                        <nav class="section__aside-nav" role="navigation">
+                            <ul class="aside-menu">
+                                <li>
+                                    <a title="{{ 'Edit settings' | translate }}" ng-click="editProjectCtrl.currentSection = 'settings'"
+                                       class="aside-menu-item" ng-class="editProjectCtrl.currentSection === 'settings' ? 'aside-menu-item--active' : ''">
+                                        {{ 'Settings' | translate }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </aside>
+
+                    <!-- section main content -->
+                    <div class="section__main-content">
+                        <form class="form" name="editProjectCtrl.editForm">
+                        <!-- error -->
+                        <p class="error" ng-show="editProjectCtrl.errorReturningProjectMetadata">{{ 'An error occurred' | translate }}</p>
+                        <!-- /error -->
+
+                        <div ng-show="editProjectCtrl.currentSection === 'actions'">
+                            <fieldset class="form__fieldset">
+                                <div class="form__group form__group--section">
+                                    <label class="form__label">{{ 'Campaign Tag' | translate }}</label>
+                                    <p>{{ 'Only one campaign tag is allowed.' | translate }}</p>
+                                    <tags-input ng-model="editProjectCtrl.projectCampaignTag"
+                                        name="campaignTag" placeholder="{{ 'choose from existing tags or create a new one' | translate }}"
+                                                replace-spaces-with-dashes="false" max-tags="1">
+                                        <auto-complete source="editProjectCtrl.getCampaignTags($query)"></auto-complete>
+                                    </tags-input>
+                                </div>
+                                <div class="form__group form__group--section">
+                                    <label class="form__label">{{ 'Campaign Name' | translate }} *</label>
+                                    <ul class="buttons--language">
+                                        <li class="button-group button-group--horizontal"
+                                             ng-repeat="locale in editProjectCtrl.locales"
+                                             role="group"
+                                             aria-label="{{ 'choose locale' | translate }}">
+                                            <button class="button button--small button--achromic" type="button"
+                                                    ng-class="editProjectCtrl.nameLanguage === locale ? 'button--active' : ''"
+                                                    ng-click="editProjectCtrl.changeLanguageName(locale)">
+                                                    {{ locale }}
+                                            </button>
+                                        </li>
+                                    </ul>
+                                    <div ng-repeat="info in editProjectCtrl.project.projectInfoLocales">
+                                        <div ng-show="info.locale === editProjectCtrl.nameLanguage">
+                                            <input type="text" class="form__control"
+                                                   name="name"
+                                                   ng-model="info.name"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form__group form__group--section">
+                                    <label class="form__label">{{ 'Description' | translate }} *</label>
+                                    <ul class="buttons--language">
+                                        <li class="button-group button-group--horizontal"
+                                             ng-repeat="locale in editProjectCtrl.locales"
+                                             role="group"
+                                             aria-label="{{ 'choose locale' | translate }}">
+                                            <button class="button button--small button--achromic" type="button"
+                                                    ng-class="editProjectCtrl.descriptionLanguage === locale ? 'button--active' : ''"
+                                                    ng-click="editProjectCtrl.changeLanguageDescription(locale)">
+                                                    {{ locale }}
+                                            </button>
+                                        </li>
+                                    </ul>
+                                    <div ng-repeat="info in editProjectCtrl.project.projectInfoLocales">
+                                        <div ng-show="info.locale === editProjectCtrl.descriptionLanguage">
+                                            <textarea
+                                                    class="form__control"
+                                                    ng-model="info.description" rows="10">
+                                            </textarea>
+                                            <p><strong>{{ 'Tip' | translate }}:</strong> {{ 'You can use Markdown. (HTML is not allowed)' | translate }}</p>
+                                            <button class="button button--secondary button--small"
+                                                    ng-click="editProjectCtrl.showPreviewDescription = !editProjectCtrl.showPreviewDescription">
+                                                {{ 'Preview' | translate }}
+                                            </button>
+                                            <p class="textblock--fulltext" ng-show="editProjectCtrl.showPreviewDescription"
+                                               markdown-to-html="info.description"
+                                               ng-model="editProjectCtrl.descriptionHTML">
+                                            </p>
+                                        </div>
+                                    </div>
+                                <div class="form__group form__group--section">
+                                    <label class="form__label">{{ 'Delete campaign' | translate }}</label>
+                                    <p>{{ 'You can only delete campaigns with no contributions.' | translate }}</p>
+                                    <div class="alert alert--warning" role="alert">
+                                        <p><strong>{{ 'Warning' | translate }}:</strong> {{ 'This cannot be undone.' | translate }}</p>
+                                    </div>
+                                    <button class="button button--secondary" type="button"
+                                            ng-click="editProjectCtrl.showDeleteConfirmation(true)">
+                                        {{ 'Delete campaign' | translate }}
+                                    </button>
+                                </div>
+                            </fieldset>
+                        </div>
+                            <!--/ settings -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--/ section main content -->
+        </div>
+    </section>
+</div>
+<!-- delete project confirmation modal -->
+<section class="modal modal-tm" ng-show="editProjectCtrl.showDeleteConfirmationModal">
+    <div class="modal__inner">
+        <header class="modal__header">
+            <div class="modal__headline">
+                <h1 class="modal__title">{{ 'Delete project' | translate }}</h1>
+            </div>
+        </header>
+        <div class="modal__body">
+            <p ng-hide="editProjectCtrl.deleteProjectSuccess">
+                {{ 'Are you sure you want to delete this project? You cannot undo deleting a project.' | translate }}
+            </p>
+            <p ng-show="editProjectCtrl.deleteProjectSuccess">{{ 'The project was deleted successfully.' | translate }}</p>
+            <p ng-show="editProjectCtrl.deleteProjectFail" class="error">{{ 'The project was not deleted successfully. This project might have some contributions.' | translate }}</p>
+        </div>
+        <footer class="modal__footer">
+            <div ng-hide="editProjectCtrl.deleteProjectSuccess">
+                <button class="button button--achromic" type="button"
+                        ng-click="editProjectCtrl.showDeleteConfirmation(false)">{{ 'Cancel' | translate }}
+                </button>
+                <button class="button button--base" type="button"
+                        ng-click="editProjectCtrl.deleteProject()">{{ 'Delete' | translate }}
+                </button>
+            </div>
+            <div ng-show="editProjectCtrl.deleteProjectSuccess">
+                 <button class="button button--base" type="button"
+                        ng-click="editProjectCtrl.goToHome()">{{ 'Go to the homepage' | translate }}
+                </button>
+            </div>
+        </footer>
+    </div>`
+    <button class="modal__button-dismiss" title="{{ 'Close' | translate }}" ng-click="editProjectCtrl.showDeleteConfirmation(false)">
+        {{ 'Dismiss' | translate }}
+    </button>
+</section>
+<!-- delete project confirmation modal -->
