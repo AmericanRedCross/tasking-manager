@@ -96,6 +96,7 @@ def init_flask_restful_routes(app):
     api = Api(app)
 
     from server.api.users.authentication_apis import LoginAPI, OAuthAPI, AuthEmailAPI
+    from server.api.campaign_apis import CampaignAPI, CampaignListAPI
     from server.api.health_check_api import HealthCheckAPI
     from server.api.license_apis import LicenseAPI, LicenceListAPI
     from server.api.mapping_apis import MappingTaskAPI, LockTaskForMappingAPI, UnlockTaskForMappingAPI, StopMappingAPI,\
@@ -130,6 +131,8 @@ def init_flask_restful_routes(app):
     api.add_resource(LoginAPI,                      '/api/v1/auth/login')
     api.add_resource(OAuthAPI,                      '/api/v1/auth/oauth-callback')
     api.add_resource(AuthEmailAPI,                  '/api/auth/email')
+    api.add_resource(CampaignListAPI,               '/api/v1/campaigns')
+    api.add_resource(CampaignAPI,                   '/api/v1/campaign/<int:campaign_id>')
     api.add_resource(LicenseAPI,                    '/api/v1/license', endpoint="create_license", methods=['PUT'])
     api.add_resource(LicenseAPI,                    '/api/v1/license/<int:license_id>', methods=['GET', 'POST', 'DELETE'])
     api.add_resource(LicenceListAPI,                '/api/v1/license/list')

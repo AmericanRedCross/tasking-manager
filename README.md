@@ -124,6 +124,7 @@ If you want to see the client you will need to follow all the instruction in **C
     * [http://localhost:5000](http://localhost:5000)
 
 ### Running Unit Tests
+
 The project includes a suite of Unit and Integration tests that you should run after any changes
 
 ```bash
@@ -138,7 +139,7 @@ python -m unittest discover tests/server
 
 On boot the Tasking Manager App will look for the following environment vars:
 
-* **TASKING_MANAGER_ENV** - Allows you to specify which config to load from ./server/config.py  Acceptable values:
+* **TM_ENV** - Allows you to specify which config to load from ./server/config.py  Acceptable values:
     * **Dev** - This is the default
     * **Staging** - Use this for your staging/test environment
     * **Prod** - Use this for your production environment
