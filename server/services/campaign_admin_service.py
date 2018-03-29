@@ -2,7 +2,7 @@ from flask import current_app
 
 from ..models.dtos.campaign_dto import CampaignDTO
 from ..models.postgis.campaign import Campaign
-from ..models.postgis.utils import NotFound, InvalidData
+from ..models.postgis.utils import InvalidData, NotFound
 
 
 class CampaignAdminServiceError(Exception):
