@@ -7,6 +7,8 @@ class CampaignListAPI(Resource):
         """
         Get all HOT Campaigns
         ---
+        tags:
+            - campaign
         produces:
             - application/json
         responses:
@@ -36,6 +38,8 @@ class CampaignAPI(Resource):
         """
         Get HOT Campaign for mapping
         ---
+        tags:
+            - campaign
         produces:
             - application/json
         parameters:

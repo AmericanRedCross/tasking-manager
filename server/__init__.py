@@ -96,6 +96,7 @@ def init_flask_restful_routes(app):
     api = Api(app)
 
     from server.api.users.authentication_apis import LoginAPI, OAuthAPI, AuthEmailAPI
+    from server.api.campaign_admin_apis import CampaignAdminAPI
     from server.api.campaign_apis import CampaignAPI, CampaignListAPI
     from server.api.health_check_api import HealthCheckAPI
     from server.api.license_apis import LicenseAPI, LicenceListAPI
@@ -122,6 +123,7 @@ def init_flask_restful_routes(app):
     api.add_resource(SwaggerDocsAPI,                '/api/docs')
     api.add_resource(HealthCheckAPI,                '/api/health-check')
     api.add_resource(ProjectAdminAPI,               '/api/v1/admin/project', endpoint="create_project", methods=['PUT'])
+    api.add_resource(CampaignAdminAPI,               '/api/v1/admin/campaign/<int:campaign_id>', methods=['GET', 'POST', 'DELETE'])
     api.add_resource(ProjectAdminAPI,               '/api/v1/admin/project/<int:project_id>', methods=['GET', 'POST', 'DELETE'])
     api.add_resource(ProjectCommentsAPI,            '/api/v1/admin/project/<int:project_id>/comments')
     api.add_resource(ProjectInvalidateAll,          '/api/v1/admin/project/<int:project_id>/invalidate-all')

@@ -16,6 +16,20 @@ class Campaign(db.Model):
     promoted = db.Column(db.Boolean, default=False)
     # projects = db.relationship(Project, lazy='dynamic', cascade='none')
 
+    @classmethod
+    def create_from_dto(cls, dto: CampaignDTO) -> int:
+        """ Creates a new Campaign class from dto """
+        new_campaign = cls()
+        new_campaign.banner = dto.banner
+        new_campaign.name = dto.name
+        new_campaign.description = dto.description
+        new_campaign.promoted = dto.promoted
+
+        db.session.add(new_campaign)
+        db.session.commit()
+
+        return new_campaign.id
+
     def as_dto(self) -> CampaignDTO:
         """ Casts message object to DTO """
         dto = CampaignDTO()
