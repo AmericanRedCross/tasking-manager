@@ -114,9 +114,9 @@ If you plan to only work on the API you don't need to build the client and can r
 #### Seeing the client
 If you want to see the client you will need to follow all the instruction in **Client Development** section then build the client as follows:
 
-* Build the client using gulp:
-    * `cd clien``
-    * `gulp build`
+* Build the client:
+    * `cd client`
+    * `npm run dist`
 * You can now run the server as above from the root dir:
     * `cd ..`
     * `python manage.py runserver -d -r`

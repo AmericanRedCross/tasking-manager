@@ -4,6 +4,7 @@
   "description": "App for creation and management of HOT mapping tasks",
   "main": "index.html",
   "scripts": {
+    "dist": "gulp build",
     "start": "gulp run"
   },
   "author": "thinkWhere",
