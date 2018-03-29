@@ -123,7 +123,7 @@ def init_flask_restful_routes(app):
     api.add_resource(SwaggerDocsAPI,                '/api/docs')
     api.add_resource(HealthCheckAPI,                '/api/health-check')
     api.add_resource(ProjectAdminAPI,               '/api/v1/admin/project', endpoint="create_project", methods=['PUT'])
-    api.add_resource(CampaignAdminAPI,               '/api/v1/admin/campaign/<int:campaign_id>', methods=['GET', 'POST', 'DELETE'])
+    api.add_resource(CampaignAdminAPI,               '/api/v1/admin/campaign/<int:campaign_id>', methods=['GET', 'PUT', 'POST', 'DELETE'])
     api.add_resource(ProjectAdminAPI,               '/api/v1/admin/project/<int:project_id>', methods=['GET', 'POST', 'DELETE'])
     api.add_resource(ProjectCommentsAPI,            '/api/v1/admin/project/<int:project_id>/comments')
     api.add_resource(ProjectInvalidateAll,          '/api/v1/admin/project/<int:project_id>/invalidate-all')
