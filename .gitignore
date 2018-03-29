@@ -27,3 +27,4 @@ venv_aws/
 
 # Mac
 .DS_Store
+.env
