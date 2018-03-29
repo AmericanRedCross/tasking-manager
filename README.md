@@ -53,7 +53,7 @@ Following must be available locally:
 ### Build the Server
 
 * Create a Python Virtual Environment, using Python 3.6:
-    * `python -m venv ./venv`
+    * `python3 -m venv ./venv` (`python -m venv ./venv` otherwise)
 * Activate your virtual environment and install dependencies:
     * Linux/Mac:
         * `. venv/bin/activate`
