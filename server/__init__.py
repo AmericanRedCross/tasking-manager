@@ -96,7 +96,7 @@ def init_flask_restful_routes(app):
     api = Api(app)
 
     from server.api.users.authentication_apis import LoginAPI, OAuthAPI, AuthEmailAPI
-    from server.api.campaign_admin_apis import CampaignAdminAPI
+    from server.api.campaign_admin_api import CampaignAdminAPI
     from server.api.campaign_apis import CampaignAPI, CampaignListAPI
     from server.api.health_check_api import HealthCheckAPI
     from server.api.license_apis import LicenseAPI, LicenceListAPI
