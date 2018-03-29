@@ -11,8 +11,6 @@ The app is split into a Client (AngularJS) and Server (Python) structure.  Each 
 Following must be available locally:
 
 * NodeJS LTS v6+ [NodeJS LTS install here](https://nodejs.org/en/)
-* [Gulp](http://gulpjs.com/) is used to run and build the app, install globally as follows:
-    * ```npm install gulp -g```
 
 ### App Dependencies
 You will now have to install all the app dependencies using [NPM](https://www.npmjs.com/)
@@ -27,7 +25,7 @@ If you plan to do client development you can run the app using gulp, without hav
 
 ```
 cd client   [if not already in client]
-gulp run
+npm start
 ```
 
 ### Running Unit Tests
