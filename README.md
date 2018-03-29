@@ -124,6 +124,7 @@ If you want to see the client you will need to follow all the instruction in **C
     * [http://localhost:5000](http://localhost:5000)
 
 ### Running Unit Tests
+
 The project includes a suite of Unit and Integration tests that you should run after any changes
 
 ```bash
