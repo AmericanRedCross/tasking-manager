@@ -11,13 +11,16 @@ import os
 import warnings
 
 # Check that environmental variables are set
-for key in ['TM_DB','TM_SECRET','TM_CONSUMER_KEY','TM_CONSUMER_SECRET','TM_ENV']:
+for key in ['TM_DB','TM_SECRET','TM_CONSUMER_KEY','TM_CONSUMER_SECRET']:
     if not os.getenv(key):
         warnings.warn("%s environmental variable not set." % (key,))
 
 # Initialise the flask app object
 application = create_app()
-init_counters(application)
+try:
+    init_counters(application)
+except:
+    pass
 manager = Manager(application)
 
 
