@@ -105,10 +105,6 @@
                     templateUrl: 'app/learn/learn.html'
                 })
 
-                .when('/campaigns', {
-                    templateUrl: 'app/campaigns/campaigns.html'
-                })
-
                 .when('/what-is-new', {
                     templateUrl: 'app/about/what-is-new.html'
                 })
@@ -128,6 +124,13 @@
                     templateUrl: 'app/project/project.html',
                     controller: 'projectController',
                     controllerAs: 'projectCtrl',
+                    reloadOnSearch: false
+                })
+
+                .when('/campaign/:id', {
+                    templateUrl: 'app/campaign/campaign.html',
+                    controller: 'campaignController',
+                    controllerAs: 'campaignCtrl',
                     reloadOnSearch: false
                 })
 

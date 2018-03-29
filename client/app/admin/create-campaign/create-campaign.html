@@ -36,25 +36,12 @@
                                   ng-show="createCampaignCtrl.campaignNameForm.submitted && createCampaignCtrl.campaignNameForm.campaignName.$error.required">
                                 {{ 'Required' | translate }}
                             </p>
-                            <div ng-show="createCampaignCtrl.createCampaignFailReason == 400"
-                                 class="error" role="alert">
-                                <p>
-                                    <strong>{{ 'Error' | translate }}:</strong> {{ 'AOI geometry must be a valid MultiPolygon.' | translate }}
-                                </p>
-                            </div>
                             <div ng-show="createCampaignCtrl.createCampaignFailReason == 500"
                                  class="error" role="alert">
                                 <p>
                                     <strong>{{ 'Error' | translate }}:</strong> {{ 'Campaign could not be created. The exact reason could not be determined.' | translate }}
                                 </p>
                             </div>
-                            <div ng-show="createCampaignCtrl.createCampaignFailReason == -1"
-                                 class="error" role="alert">
-                                <p>
-                                    <strong>{{ 'Error' | translate }}:</strong> {{ 'The Campaign could not be created. This may be because the combined data size of the AOI and the grid is too large to send to the server. Try again with a smaller AOI or fewer tasks.' | translate }}
-                                </p>
-                            </div>
-
                             <span ng-show="createCampaignCtrl.createCampaignSuccess">
                                 {{ 'Your campaign was created successfully.' | translate }}
                             </span>
@@ -65,7 +52,6 @@
                             <button class="button button--primary" type="button"
                                     ng-click="createCampaignCtrl.createCampaign()">
                                 <span ng-hide="createCampaignCtrl.isCloneCampaign">{{ 'Create' | translate }}</span>
-                                <span ng-show="createCampaignCtrl.isCloneCampaign">{{ 'Clone' | translate }}</span>
                             </button>
                             <button class="button button--secondary" type=""
                                     ng-click="createCampaignCtrl.setWizardStep(createCampaignCtrl.isTaskArbitrary?'tasks':'trim')">
