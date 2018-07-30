@@ -11,7 +11,7 @@
     function campaignService($http, $q, configService, authService, geospatialService, languageService) {
 
         var service = {
-            createCampaign: createCampaign;
+            createCampaign: createCampaign,
             updateCampaign: updateCampaign,
             deleteCampaign: deleteCampaign,
             getCampaign: getCampaign,
@@ -55,7 +55,7 @@
          * @param campaignData
          * @returns {*|!jQuery.deferred|!jQuery.jqXHR|!jQuery.Promise}
          */
-        function createCampaign(id, campaignData) {
+        function updateCampaign(id, campaignData) {
 
             // Returns a promise
             return $http({

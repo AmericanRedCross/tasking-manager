@@ -10,19 +10,20 @@
     </section>
     <section class="create-campaign section__body section__body--secondary">
         <div class="inner">
-            <ul class="progress-indicator">
-                <li ng-class="createCampaignCtrl.showWizardStep('name') ? 'completed' : ''">
-                    <span class="bubble"></span>{{ 'Step 1' | translate }}
-                </li>
-                <!-- <li ng-class="createCampaignCtrl.showWizardStep('tasks') ? 'completed' : ''">
-                    <span class="bubble"></span>{{ 'Step 2' | translate }}
-                </li> -->
-            </ul>
             <div class="sidebar">
-                <div ng-show="createCampaignCtrl.currentStep === 'name'" class="content">
-                    <h4>{{ 'Step 1: Name' | translate }}</h4>
-                    <form class="form" name="createCampaignCtrl.campaignNameForm">
-                        <p>{{ 'Campaign has' | translate }} {{ createCampaignCtrl.numberOfTasks }} {{ 'tasks.' | translate }}</p>
+                <div class="content">
+                    <h4>{{ 'Name' | translate }}</h4>
+                    <div class="form__group form__group--section">
+                        <label class="form__label">{{ 'Campaign Tag' | translate }}</label>
+                        <p>{{ 'Only one campaign tag is allowed.' | translate }}</p>
+                        <tags-input ng-model="createCampaignCtrl.campaignName"
+                            name="campaignTag" placeholder="{{ 'choose from existing tags or create a new one' | translate }}"
+                                    replace-spaces-with-dashes="false" max-tags="1">
+                            <auto-complete source="editProjectCtrl.getCampaignTags($query)"></auto-complete>
+                        </tags-input>
+                    </div>
+
+                    <!-- <form class="form" name="createCampaignCtrl.campaignNameForm">
                         <div>
                             <label class="form__label" for="campaignName">{{ 'Campaign name' | translate }}</label>
                             <input type="text" class="form__control form__control--medium" id="campaignName"
@@ -53,16 +54,12 @@
                                     ng-click="createCampaignCtrl.createCampaign()">
                                 <span ng-hide="createCampaignCtrl.isCloneCampaign">{{ 'Create' | translate }}</span>
                             </button>
-                            <button class="button button--secondary" type=""
-                                    ng-click="createCampaignCtrl.setWizardStep(createCampaignCtrl.isTaskArbitrary?'tasks':'trim')">
-                                <span>{{ 'Back to Previous' | translate }}</span>
-                            </button>
                         </div>
                         <div ng-show="createCampaignCtrl.waiting">
                             <i class="fa fa-spinner fa-spin fa-lg fa-fw"></i><span>{{ 'Creation in progress...' | translate }}</span>
                         </div>
 
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

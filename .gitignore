@@ -16,6 +16,7 @@ server/web/static/dist/
 
 # Ignore local logs
 logs/
+npm-debug.log
 
 #python
 venv/
