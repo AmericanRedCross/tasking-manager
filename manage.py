@@ -19,8 +19,8 @@ for key in ['TM_DB','TM_SECRET','TM_CONSUMER_KEY','TM_CONSUMER_SECRET']:
 application = create_app()
 try:
     init_counters(application)
-except:
-    pass
+except Exception:
+    warnings.warn('Homepage counters not initialized.')
 manager = Manager(application)
 
 
